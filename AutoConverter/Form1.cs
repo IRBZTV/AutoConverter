@@ -36,12 +36,8 @@ namespace AutoConverter
                     proc.StartInfo.FileName = Path.GetDirectoryName(Application.ExecutablePath) + "\\ffmpeg";
 
                     proc.StartInfo.Arguments = "-i " + "\"" + _fileIn + "\"" + "  -r 25 -b "
-                                                + ConfigurationSettings.AppSettings["MaxBitrate"].ToString().Trim() + "k   -minrate  "
-                                                + ConfigurationSettings.AppSettings["MinBitrate"].ToString().Trim() + "k -maxrate "
-                                                + ConfigurationSettings.AppSettings["MaxBitrate"].ToString().Trim()
-                                                + "k -c:v "
-                                                + ConfigurationSettings.AppSettings["Codec"].ToString().Trim()
-                                                + "  -y  " + "\"" + _fileOut
+                                                + ConfigurationSettings.AppSettings["MaxBitrate"].ToString().Trim() 
+                                                + "k -y  " + "\"" + _fileOut
                                                 + ConfigurationSettings.AppSettings["Extention"].ToString().Trim() + "\"";
 
                     proc.StartInfo.RedirectStandardError = true;

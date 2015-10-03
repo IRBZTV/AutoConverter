@@ -66,15 +66,26 @@ namespace AutoConverter
                 {
                     File.Delete(_fileIn);
                 }
-                catch
+                catch(Exception exp)
                 {
-
+                File.AppendAllText(Path.GetDirectoryName(Application.ExecutablePath) + "/error.txt", exp.Message+"\r\n");
                 }
            // }
             timer1.Enabled = true;
         }
         private void myProcess_Exited(object sender, EventArgs e)
         {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                try
+            {
+                File.Delete(_fileIn);
+            }
+            catch (Exception exp)
+            {
+                File.AppendAllText(Path.GetDirectoryName(Application.ExecutablePath) + "\\error.txt", exp.Message+"\r\n");
+            }
+            }));
         }
         protected void FindDuration(string Str)
         {
